@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: airport
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+      - ./source-data:/docker-entrypoint-initdb.d/data
+    ports:
+      - "5433:5432"
